@@ -65,4 +65,12 @@ public class SerwisWypozyczalni
             }
         }
     }
+
+    public void OznaczJakoUszkodzony(Sprzet sprzet)
+    {
+        if (sprzet != null)
+        {
+            sprzet.ZmienStatus(Status.Uszkodzony);
+        }
+    }
 }
