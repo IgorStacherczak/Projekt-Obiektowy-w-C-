@@ -42,11 +42,24 @@ public class SerwisWypozyczalni
 
     public void ZwrotSprzetu(Uzytkownik uzytkownik, Sprzet sprzet)
     {
+
+        double kara = 0;
+        double liczbaDni = 0;
+        
         for (int i = 0; i < listaWypozyczen.Count; i++)
         {
             if (listaWypozyczen[i].Uzytkownik == uzytkownik && listaWypozyczen[i].Sprzet == sprzet && listaWypozyczen[i].DataFaktycznegoZwrotu == null) 
             {
                 listaWypozyczen[i].FaktycznyZwrot = DateTime.Today;
+
+                if (DateTime.Today > listaWypozyczen[i].DataZwrotu)
+                {
+                    liczbaDni = (DateTime.Today - listaWypozyczen[i].DataZwrotu).TotalDays;
+                    kara = liczbaDni * 5;
+
+                    listaWypozyczen[i].KwotaKary = kara;
+                }
+                
                 sprzet.ZmienStatus(Status.Dostepny);
                 break;
             }

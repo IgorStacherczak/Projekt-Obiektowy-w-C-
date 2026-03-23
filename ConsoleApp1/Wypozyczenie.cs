@@ -7,6 +7,7 @@ public class Wypozyczenie
     private DateTime dataWypozyczenia;
     private DateTime dataZwrotu;
     private DateTime? dataFaktycznegoZwrotu;
+    private double kara;
 
     public Wypozyczenie(Uzytkownik nazwaUzytkownika, Sprzet nazwaSprzetu, DateTime dataWypozyczeniaSprzetu, DateTime dataZwrotuSprzetu)
     {
@@ -37,6 +38,30 @@ public class Wypozyczenie
         get
         {
             return sprzet;
+        }
+    }
+
+    public DateTime DataZwrotu
+    {
+        get
+        {
+            return dataZwrotu;
+        }
+    }
+
+    public double Kara
+    {
+        get
+        {
+            return kara;
+        }
+    }
+
+    public double KwotaKary
+    {
+        set
+        {
+            kara = value;
         }
     }
 
