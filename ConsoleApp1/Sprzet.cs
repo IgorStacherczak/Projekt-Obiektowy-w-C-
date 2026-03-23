@@ -7,10 +7,11 @@ public class Sprzet
     private String nazwa = "";
     private Status status;
 
-    public Sprzet()
+    public Sprzet(String nazwaSprzetu)
     {
         licznik++;
         id = licznik;
+        nazwa = nazwaSprzetu;
     }
     
     public String NazwaSprzetu

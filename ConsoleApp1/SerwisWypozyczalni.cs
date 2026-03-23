@@ -40,6 +40,22 @@ public class SerwisWypozyczalni
         }
     }
 
+    public List<Sprzet> ListaSprzetu
+    {
+        get
+        {
+            return listasprzetu;
+        }
+    }
+    
+    public List<Uzytkownik> ListaUzytkownikow
+    {
+        get
+        {
+            return listaUzytkownikow;
+        }
+    }
+
     public void ZwrotSprzetu(Uzytkownik uzytkownik, Sprzet sprzet)
     {
 
@@ -89,10 +105,10 @@ public class SerwisWypozyczalni
         {
             if (listaWypozyczen[i].DataFaktycznegoZwrotu == null)
             {
-                Console.WriteLine("Nazwa Osoby: " + listaWypozyczen[i].Uzytkownik + 
-                                  " Sprzęt: " +  listaWypozyczen[i].Sprzet + 
-                                  " Data Wypożyczenia: " +  listaWypozyczen[i].DataWypozyczenia + 
-                                  " Data Zwrotu: " + listaWypozyczen[i].DataZwrotu);
+                Console.WriteLine("Nazwa Osoby: " + listaWypozyczen[i].Uzytkownik.Imie + listaWypozyczen[i].Uzytkownik.Nazwisko +
+                                  " Sprzęt: " + listaWypozyczen[i].Sprzet.NazwaSprzetu + " Sprzęt ID: " + listaWypozyczen[i].Sprzet.ID +
+                                  " Data Wypożyczenia: " +  listaWypozyczen[i].DataWypozyczenia.ToShortDateString() + 
+                                  " Data Zwrotu: " + listaWypozyczen[i].DataZwrotu.ToShortDateString());
             }
         }
         
@@ -102,13 +118,48 @@ public class SerwisWypozyczalni
         {
             if (DateTime.Today> listaWypozyczen[i].DataZwrotu && listaWypozyczen[i].DataFaktycznegoZwrotu == null)
             {
-                Console.WriteLine("Nazwa Osoby: " + listaWypozyczen[i].Uzytkownik + 
-                                  " Sprzęt: " + listaWypozyczen[i].Sprzet + 
-                                  " Data Wypożyczenia: " + listaWypozyczen[i].DataWypozyczenia +
-                                  " Data Zwrotu: " + listaWypozyczen[i].DataZwrotu + 
+                Console.WriteLine("Nazwa Osoby: " + listaWypozyczen[i].Uzytkownik.Imie + listaWypozyczen[i].Uzytkownik.Nazwisko + 
+                                  " Sprzęt: " + listaWypozyczen[i].Sprzet.NazwaSprzetu + " Sprzęt ID: " + listaWypozyczen[i].Sprzet.ID +
+                                  " Data Wypożyczenia: " + listaWypozyczen[i].DataWypozyczenia.ToShortDateString() +
+                                  " Data Zwrotu: " + listaWypozyczen[i].DataZwrotu.ToShortDateString() + 
                                   " Data Faktycznego Zwrotu: " + listaWypozyczen[i].DataFaktycznegoZwrotu);
                 
             }
+        }
+    }
+
+    public void DodajUzytkownika(Uzytkownik uzytkownik)
+    {
+        if (uzytkownik != null)
+        {
+            listaUzytkownikow.Add(uzytkownik);
+        }
+    }
+
+    public void DodajSprzet(Sprzet sprzet)
+    {
+        if (sprzet != null)
+        {
+            listasprzetu.Add(sprzet);
+        }
+    }
+
+    public void WyswietlDostepnySprzet()
+    {
+        for (int i = 0; i < listasprzetu.Count; i++)
+        {
+            if (listasprzetu[i].StatusSprzetu == Status.Dostepny)
+            {
+                Console.WriteLine("Nazwa: " + listasprzetu[i].NazwaSprzetu + " ID: " + listasprzetu[i].ID + " Status: " + listasprzetu[i].StatusSprzetu);
+            }else
+            {
+                Console.WriteLine("Brak dostępnego sprzętu");
+            }
+        }
+
+        if (listasprzetu.Count == 0)
+        {
+            Console.WriteLine("Brak dostępnego sprzętu");
         }
     }
 }
