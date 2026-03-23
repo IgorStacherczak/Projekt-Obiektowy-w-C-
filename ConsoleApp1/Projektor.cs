@@ -1,6 +1,7 @@
 namespace ConsoleApp1;
 
-public class Projektor
+public class Projektor : Sprzet
 {
-    
+    private int jasnosc;
+    private String rozdzielczosc;
 }

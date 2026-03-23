@@ -1,6 +1,7 @@
 namespace ConsoleApp1;
 
-public class Kamera
+public class Kamera : Sprzet
 {
-    
+    private  String jakosc;
+    private int liczbaKlatek;
 }
