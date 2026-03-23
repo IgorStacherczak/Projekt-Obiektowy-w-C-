@@ -31,4 +31,20 @@ public class Wypozyczenie
             return dataFaktycznegoZwrotu;
         }
     }
+
+    public Sprzet Sprzet
+    {
+        get
+        {
+            return sprzet;
+        }
+    }
+
+    public DateTime FaktycznyZwrot
+    {
+        set
+        {
+            dataFaktycznegoZwrotu = value;
+        }
+    }
 }

@@ -39,4 +39,17 @@ public class SerwisWypozyczalni
             }
         }
     }
+
+    public void ZwrotSprzetu(Uzytkownik uzytkownik, Sprzet sprzet)
+    {
+        for (int i = 0; i < listaWypozyczen.Count; i++)
+        {
+            if (listaWypozyczen[i].Uzytkownik == uzytkownik && listaWypozyczen[i].Sprzet == sprzet && listaWypozyczen[i].DataFaktycznegoZwrotu == null) 
+            {
+                listaWypozyczen[i].FaktycznyZwrot = DateTime.Today;
+                sprzet.ZmienStatus(Status.Dostepny);
+                break;
+            }
+        }
+    }
 }
