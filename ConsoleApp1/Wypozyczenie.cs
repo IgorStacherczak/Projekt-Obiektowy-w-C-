@@ -25,6 +25,14 @@ public class Wypozyczenie
         }
     }
     
+    public DateTime DataWypozyczenia
+    {
+        get
+        {
+            return dataWypozyczenia;
+        }
+    }
+    
     public DateTime? DataFaktycznegoZwrotu
     {
         get

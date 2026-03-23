@@ -12,6 +12,14 @@ public class Sprzet
         licznik++;
         id = licznik;
     }
+    
+    public String NazwaSprzetu
+    {
+        get
+        {
+            return nazwa;
+        }
+    }
 
     public Status StatusSprzetu
     {

@@ -73,4 +73,42 @@ public class SerwisWypozyczalni
             sprzet.ZmienStatus(Status.Uszkodzony);
         }
     }
+
+    public void WyswietlRaport()
+    {
+        Console.WriteLine("Sprzęty");
+
+        for (int i = 0; i < listasprzetu.Count; i++)
+        {
+            Console.WriteLine("Nazwa Sprzętu: " + listasprzetu[i].NazwaSprzetu + " ID: " + listasprzetu[i].ID + " Status: " + listasprzetu[i].StatusSprzetu);
+        }
+        
+        Console.WriteLine("Aktywne Wypożyczenia");
+
+        for (int i = 0; i < listaWypozyczen.Count; i++)
+        {
+            if (listaWypozyczen[i].DataFaktycznegoZwrotu == null)
+            {
+                Console.WriteLine("Nazwa Osoby: " + listaWypozyczen[i].Uzytkownik + 
+                                  " Sprzęt: " +  listaWypozyczen[i].Sprzet + 
+                                  " Data Wypożyczenia: " +  listaWypozyczen[i].DataWypozyczenia + 
+                                  " Data Zwrotu: " + listaWypozyczen[i].DataZwrotu);
+            }
+        }
+        
+        Console.WriteLine("Przeterminowane");
+
+        for (int i = 0; i < listaWypozyczen.Count; i++)
+        {
+            if (DateTime.Today> listaWypozyczen[i].DataZwrotu && listaWypozyczen[i].DataFaktycznegoZwrotu == null)
+            {
+                Console.WriteLine("Nazwa Osoby: " + listaWypozyczen[i].Uzytkownik + 
+                                  " Sprzęt: " + listaWypozyczen[i].Sprzet + 
+                                  " Data Wypożyczenia: " + listaWypozyczen[i].DataWypozyczenia +
+                                  " Data Zwrotu: " + listaWypozyczen[i].DataZwrotu + 
+                                  " Data Faktycznego Zwrotu: " + listaWypozyczen[i].DataFaktycznegoZwrotu);
+                
+            }
+        }
+    }
 }
