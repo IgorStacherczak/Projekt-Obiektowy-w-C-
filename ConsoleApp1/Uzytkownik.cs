@@ -1,3 +1,5 @@
+using System.IO.Compression;
+
 namespace ConsoleApp1;
 
 public class Uzytkownik
@@ -6,4 +8,12 @@ public class Uzytkownik
     private string imie;
     private string nazwisko;
     private TypUzytkownika typUzytkownika;
+
+    public TypUzytkownika TypUzytkownika
+    {
+        get
+        {
+            return typUzytkownika;
+        }
+    }
 }
