@@ -50,7 +50,22 @@ class Program
                               "10. Oznacz sprzęt jako uszkodzony\n" +
                               "0. Wyjście\n");
             Console.Write("Podaj numer akcji: ");
-            i = Convert.ToInt32(Console.ReadLine());
+            
+            string input = Console.ReadLine();
+
+            if (!int.TryParse(input, out int temp))
+            {
+                Console.WriteLine("Niepoprawna wartość!");
+                continue;
+            }
+
+            if (temp < 0 || temp > 10)
+            {
+                Console.WriteLine("Nie ma takiej opcji!");
+                continue;
+            }
+
+            i = temp;
 
             switch (i)
             {
@@ -61,13 +76,20 @@ class Program
                     Nazwisko = Console.ReadLine();
                     Console.WriteLine("Podaj Typ Uzytkownika: \n1.Student\n2.Pracownik");
                     wybor = Console.ReadLine();
+
+                    int wyborTypuUzytkownika;
+                    if (!int.TryParse(wybor, out wyborTypuUzytkownika))
+                    {
+                        Console.WriteLine("Niepoprawna wartość!");
+                        break;
+                    }
                     
-                    if (Convert.ToInt32(wybor) == 1)
+                    if (wyborTypuUzytkownika == 1)
                     {
                         typUzytkownika = TypUzytkownika.Student;
                         Uzytkownik uzytkownik = new Uzytkownik(Imie, Nazwisko, typUzytkownika);
                         serwis.DodajUzytkownika(uzytkownik);
-                    }else if (Convert.ToInt32(wybor) == 2)
+                    }else if (wyborTypuUzytkownika == 2)
                     {
                         typUzytkownika = TypUzytkownika.Pracownik;
                         Uzytkownik uzytkownik = new Uzytkownik(Imie, Nazwisko,typUzytkownika);
@@ -78,28 +100,51 @@ class Program
                 case 2:
                     Console.WriteLine("Podaj Typ Sprzętu: \n1.Laptop\n2.Kamera\n3.Projektor");
                     wybor = Console.ReadLine();
-                    if (Convert.ToInt32(wybor) == 1)
+
+                    int wyborTypuSprzetu;
+                    if (!int.TryParse(wybor, out wyborTypuSprzetu))
+                    {
+                        Console.WriteLine("Niepoprawna wartość!");
+                        break;
+                    }
+
+                    if (wyborTypuSprzetu == 1)
                     {
                         Console.WriteLine("Podaj Procesor: ");
                         String procesor = Console.ReadLine();
                         Console.WriteLine("Podaj Ram: ");
-                        int ram = Convert.ToInt32(Console.ReadLine());
+                        int ram;
+                        if (!int.TryParse(Console.ReadLine(), out ram))
+                        {
+                            Console.WriteLine("Niepoprawna wartość!");
+                            break;
+                        }
                         Laptop laptop = new Laptop("Laptop",procesor,ram);
                         serwis.DodajSprzet(laptop);
-                    }else if (Convert.ToInt32(wybor) == 2)
+                    }else if (wyborTypuSprzetu == 2)
                     {
                         Console.WriteLine("Podaj jakosc: ");
                         String jakosc = Console.ReadLine();
                         Console.WriteLine("Podaj Liczbe Klatek: ");
-                        int liczbaKlatek = Convert.ToInt32(Console.ReadLine());
+                        int liczbaKlatek;
+                        if (!int.TryParse(Console.ReadLine(), out liczbaKlatek))
+                        {
+                            Console.WriteLine("Niepoprawna wartość!");
+                            break;
+                        }
                         Kamera kamera = new Kamera("Kamera",jakosc,liczbaKlatek);
                         serwis.DodajSprzet(kamera);
-                    }else if (Convert.ToInt32(wybor) == 3)
+                    }else if (wyborTypuSprzetu == 3)
                     {
                         Console.WriteLine("Podaj Rozdzielczosc: ");
                         String rozdzielczosc = Console.ReadLine();
                         Console.WriteLine("Podaj jasnosc liczbę: ");
-                        int jasnosc = Convert.ToInt32(Console.ReadLine());
+                        int jasnosc;
+                        if (!int.TryParse(Console.ReadLine(), out jasnosc))
+                        {
+                            Console.WriteLine("Niepoprawna wartość!");
+                            break;
+                        }
                         Projektor projektor = new Projektor("Projektor",jasnosc,rozdzielczosc);
                         serwis.DodajSprzet(projektor);
                     }
@@ -117,7 +162,12 @@ class Program
                         Console.WriteLine(j + ". " + serwis.ListaUzytkownikow[j].Imie + " " + serwis.ListaUzytkownikow[j].Nazwisko);
                     }
 
-                    int uIndex = Convert.ToInt32(Console.ReadLine());
+                    int uIndex;
+                    if (!int.TryParse(Console.ReadLine(), out uIndex) || uIndex < 0 || uIndex >= serwis.ListaUzytkownikow.Count)
+                    {
+                        Console.WriteLine("Niepoprawny wybór!");
+                        break;
+                    }
 
                     List<Sprzet> dostepneSprzety = new List<Sprzet>();
 
@@ -143,7 +193,12 @@ class Program
                                           dostepneSprzety[j].StatusSprzetu);
                     }
 
-                    int sIndex = Convert.ToInt32(Console.ReadLine());
+                    int sIndex;
+                    if (!int.TryParse(Console.ReadLine(), out sIndex) || sIndex < 0 || sIndex >= dostepneSprzety.Count)
+                    {
+                        Console.WriteLine("Niepoprawny wybór!");
+                        break;
+                    }
 
                     serwis.WypozyczSprzet(serwis.ListaUzytkownikow[uIndex], dostepneSprzety[sIndex]);
                     Console.WriteLine("Sprzęt został wypożyczony.");
@@ -161,7 +216,12 @@ class Program
                         Console.WriteLine(j + ". " + serwis.ListaUzytkownikow[j].Imie + " " + serwis.ListaUzytkownikow[j].Nazwisko);
                     }
 
-                    int uIndex2 = Convert.ToInt32(Console.ReadLine());
+                    int uIndex2;
+                    if (!int.TryParse(Console.ReadLine(), out uIndex2) || uIndex2 < 0 || uIndex2 >= serwis.ListaUzytkownikow.Count)
+                    {
+                        Console.WriteLine("Niepoprawny wybór!");
+                        break;
+                    }
                     Uzytkownik wybranyUzytkownik = serwis.ListaUzytkownikow[uIndex2];
 
                     List<Sprzet> wypozyczoneSprzetyUzytkownika = new List<Sprzet>();
@@ -192,7 +252,12 @@ class Program
                                           " ID: " + wypozyczoneSprzetyUzytkownika[j].ID);
                     }
 
-                    int sIndex2 = Convert.ToInt32(Console.ReadLine());
+                    int sIndex2;
+                    if (!int.TryParse(Console.ReadLine(), out sIndex2) || sIndex2 < 0 || sIndex2 >= wypozyczoneSprzetyUzytkownika.Count)
+                    {
+                        Console.WriteLine("Niepoprawny wybór!");
+                        break;
+                    }
 
                     serwis.ZwrotSprzetu(wybranyUzytkownik, wypozyczoneSprzetyUzytkownika[sIndex2]);
 
@@ -220,7 +285,12 @@ class Program
                         Console.WriteLine(j + ". " + serwis.ListaUzytkownikow[j].Imie + " " + serwis.ListaUzytkownikow[j].Nazwisko);
                     }
 
-                    int uIndex3 = Convert.ToInt32(Console.ReadLine());
+                    int uIndex3;
+                    if (!int.TryParse(Console.ReadLine(), out uIndex3) || uIndex3 < 0 || uIndex3 >= serwis.ListaUzytkownikow.Count)
+                    {
+                        Console.WriteLine("Niepoprawny wybór!");
+                        break;
+                    }
                     serwis.WyswietlAktywneWypozyczeniaUzytkownika(serwis.ListaUzytkownikow[uIndex3]);
                     break;
                 case 9:
@@ -241,7 +311,12 @@ class Program
                                           " Status: " + serwis.ListaSprzetu[j].StatusSprzetu);
                     }
 
-                    int sIndex3 = Convert.ToInt32(Console.ReadLine());
+                    int sIndex3;
+                    if (!int.TryParse(Console.ReadLine(), out sIndex3) || sIndex3 < 0 || sIndex3 >= serwis.ListaSprzetu.Count)
+                    {
+                        Console.WriteLine("Niepoprawny wybór!");
+                        break;
+                    }
                     serwis.OznaczJakoUszkodzony(serwis.ListaSprzetu[sIndex3]);
                     Console.WriteLine("Sprzęt został oznaczony jako uszkodzony.");
                     break;
