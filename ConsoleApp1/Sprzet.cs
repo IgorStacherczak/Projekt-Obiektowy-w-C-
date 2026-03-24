@@ -1,6 +1,6 @@
 namespace ConsoleApp1;
 
-public class Sprzet
+abstract public class Sprzet
 {
     private int id;
     private static int licznik;
