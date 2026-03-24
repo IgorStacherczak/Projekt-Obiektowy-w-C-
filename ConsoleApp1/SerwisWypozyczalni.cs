@@ -9,6 +9,8 @@ public class SerwisWypozyczalni
     private List<Uzytkownik> listaUzytkownikow = new List<Uzytkownik>();
     private List<Wypozyczenie> listaWypozyczen = new List<Wypozyczenie>();
 
+    private const double karaZaDzien = 5;
+
     public void WypozyczSprzet(Uzytkownik uzytkownik, Sprzet sprzet)
     {
         if (uzytkownik == null)
@@ -96,7 +98,7 @@ public class SerwisWypozyczalni
                 if (DateTime.Today > listaWypozyczen[i].DataZwrotu)
                 {
                     liczbaDni = (DateTime.Today - listaWypozyczen[i].DataZwrotu).TotalDays;
-                    kara = liczbaDni * 5;
+                    kara = liczbaDni * karaZaDzien;
 
                     listaWypozyczen[i].KwotaKary = kara;
                 }
