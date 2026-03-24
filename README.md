@@ -52,3 +52,10 @@ W projekcie znajdują się główne klasy:
 - Nie można wypożyczyć niedostępnego sprzętu
 - System blokuje wypożyczenie po przekroczeniu limitu
 - Możliwe naliczenie kary za opóźnienie
+
+---
+## Uruchomienie
+
+1. Otwórz projekt w Rider
+2. Uruchom plik `Program.cs`
+3. Korzystaj z menu w konsoli
